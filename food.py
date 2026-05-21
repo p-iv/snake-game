@@ -13,10 +13,22 @@ class Food(Turtle):
 
         self.spawn()
 
-    def spawn(self):
+    def spawn(self, snake_segments = None):
         possible_positions = list(range(-260, 261, 20))
+        while True:
+            random_x = random.choice(possible_positions)
+            random_y = random.choice(possible_positions)
 
-        random_x = random.choice(possible_positions)
-        random_y = random.choice(possible_positions)
+            if snake_segments is None:
+                self.goto(random_x, random_y)
+                break
 
-        self.goto(random_x, random_y)
+            is_overlapping = False
+            for segment in snake_segments:
+                if segment.distance(random_x, random_y) < 15:
+                    is_overlapping = True
+                    break
+
+            if not is_overlapping:
+                self.goto(random_x, random_y)
+                break

@@ -32,17 +32,13 @@ while game_is_on:
 
     #Collision with food
     if snake.head.distance(apple) < 15:
-        for segment in snake.segments:
-            if apple.xcor() != segment.xcor() and apple.ycor() != segment.ycor():
-                apple.spawn()
+        apple.spawn(snake.segments)
         snake.grow()
         score.increase_score(score = 1)
 
     #Collision with golden apple
     if golden_apple.is_active and snake.head.distance(golden_apple) < 15:
-        for segment in snake.segments:
-            if apple.xcor() != segment.xcor() and apple.ycor() != segment.ycor():
-                golden_apple.hide_food()
+        golden_apple.hide_food(snake.segments)
         snake.grow()
         score.increase_score(score = 5)
 
