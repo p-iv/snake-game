@@ -2,13 +2,13 @@ from food import Food
 import random
 
 class GoldenFood(Food):
-    def __init__(self, screen):
+    def __init__(self, screen, snake):
         self.screen = screen
+        self.snake = snake
         self.is_active = False
 
-        super().__init__()
+        super().__init__(snake)
 
-        self.type = "golden_apple"
         self.color("gold")
         self.shapesize(stretch_wid=1, stretch_len=1)
         self.hideturtle()
